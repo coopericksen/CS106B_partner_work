@@ -1,0 +1,63 @@
+Perfect Numbers
+---------------
+
+Q1. Roughly how long did it take your computer to do the search? How many perfect numbers were found and what were they?
+A1. It took 1.69s to find 4 perfect numbers. They were: 6, 28, 496, 8128
+
+Q2. Make a table of the timing results for `findPerfects` that you observed. (old-school table of text rows and columns is just fine)
+A2.
+_____________________________
+| Count  | Result (seconds) |
+|:------:|:----------------:|
+| 25000  | 0.766            |
+| 50000  | 1.925            |
+| 100000 | 7.040            |
+| 200000 | 27.126           |
+|________|__________________|
+
+Q3. Does it take the same amount of work to compute `isPerfect` on the number 10 as it does on the number 1000? Why or why not? Does it take the same amount of work for `findPerfects` to search the range of numbers from 1-1000 as it does to search the numbers from 1000-2000? Why or why not?
+A3. No, it does not take the same amount of time to compute isPerfect on 10 versus on 1000. 1000 has more factors, so it takes more operations to check if it is perfect. The range from 1-1000 has smaller numbers with less factors compared to the range from 1000-2000, so we can expect the range from 1000-2000 to take more operations despite the length of the interval being the same.
+
+Q4. Extrapolate from the data you gathered and make a prediction: how long will it take `findPerfects` to reach the fifth perfect number?
+A4. We estimate it will take approximately 6.5 days for the brute force approach to find the perfect number in O(n^2) time.
+
+Q5. Do any of the tests still pass even with this broken function? Why or why not?
+A5. 3 out of the 7 tests passed with this broken function. Starting the total count at 1 offsets the divsor sum by 1 for all checks. This causes the perfect numbers to erroneously return false. The checks for numbers that are not perfect still returned false even with the broken count. The test checking that 0 and 1 are not perfect fails, as 1 will start with a total of 1 instead of a total of 0.
+
+Q6. Explain your testing strategy for `smarterSum` and how you chose your specific test cases that lead you to be confident the function is working correctly.
+A6. We tested a variety of numbers to make sure that smarterSum returns the same value as divisorSum. We chose positive and negative numbers, positive and negative perfect squares, and larger numbers to ensure that no edge cases would affect the output of smarterSum.
+
+Q7. Record your timing results for `findPerfectsSmarter` into a table.
+A7. 
+_____________________________
+| Count  | Result (seconds) |
+|:------:|:----------------:|
+| 25000  | 0.265            |
+| 50000  | 0.267            |
+| 100000 | 0.328            |
+| 200000 | 0.576            |
+|________|__________________|
+
+Q8. Make a prediction: how long will `findPerfectsSmarter` take to reach the fifth perfect number?
+A8. We estimate it will take approximately 2.957 hours for the smarter approach to find the perfect number.
+
+Q9. Explain how you chose your specific test cases and why they lead you to be confident `findNthPerfectEuclid` is working correctly.
+A9. We chose to test using the first 5 perfect numbers, because these are the ones we know. We are condfident that the function is working as intended because it was able to successfully return these first 5 perfects.
+
+Soundex
+-------
+
+Q10. What is the Soundex code for "Angelou"? What is the code for your own surname?
+A10. 
+Angelou: 0520400 -> A524
+Cooper: C160
+Odelia: O340
+
+Q11. Before writing any code, brainstorm your plan of attack and sketch how you might decompose the work into smaller tasks. Briefly describe your decomposition strategy.
+A11. First, we will fix the lettersOnly function by using tests to determine the issue. Next we will tackle writing the soundex function. We will use the lettersOnly function to get the letters, then replace each letter (except the first which we will ensure is uppercase) in the string based on the digit from the table. Then remove adjacent duplicate numbers and discard 0s. If the code is longer than 4 characters we will drop the end so that is of length 4. If it is too short, we will add 0s until its length 4.
+
+Q12. Think about one or more examples of a class of names that the Soundex system might not work well for. Explain what this class of names is and why the system might incorrectly group them or mis-categorize one of the names.
+A12. Names that are quite long would have the last parts of them cut off in the soundex code. Also, names written in other alphabets that are outside of the ASCII realm would have no representation in the current soundex model. The soundex system may group long names that sound similar at the beginning of the name, but are vastly different in the rest of the name. People who have multiple last names would only be able to be grouped by one of them as the rest would likely be truncated.
+
+Q13. Suppose you are a software engineer working for the U.S. government. You have been tasked with implementing a system that collects names as part of the Census survey and analyzes these names using a phonetic algorithm. Your boss suggests using Soundex and notes that the algorithm is only expected to work for ASCII-encoded strings, since supporting Unicode would require extra work and time. What would your response be and why? What representational harms might result from building a system that exclusively uses Soundex and/or ASCII?
+A13. In this situation we would advise against using only ASCII characters for soundex. We think that switching to Unicode would be better to be more inclusive and representative of other languages. We also think the soundex should be longer so that it is representative of names with more syllables. Sticking only to ASCII would limit our acessibitility, so we would propose to our boss that the work to support Unicode is worth it.
