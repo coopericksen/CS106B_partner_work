@@ -1,0 +1,51 @@
+Before submitting this file, make sure that there are no more TODO
+placeholders remaining in the file (and remove this comment too).
+
+Warmup
+------
+Q1. What is the value of `totalMoves` after stepping over the call to `moveTower` in `hanoiAnimation`?
+A1. The value of `totalMoves` is 15.
+
+Q2. What is the value of the `totalMoves` variable after stepping over the first recursive sub-call?
+(In other words, within `moveTower` and just after stepping over the first recursive sub-call
+to `moveTower` inside the `else` statement.)
+A2. We were unable to step into moveTower. It kept bringing us to allocator.h?
+
+Q3. After breaking at the base case of `moveTower` and then choosing Step Out, where do you end up?
+(What function are you in, and at what line number?)
+What is the value of the `totalMoves` variable at this point?
+A3. We end up still inside of `moveTower` but now at line 79. The value of `totalMoves` is 1.
+
+Q4. What is the smallest possible input that you used to trigger the bug in the program?
+A4. The smallest possible input that we came up with was {2, 5, -2}. We believe the smallest buggy input is of size 3 where index 0 and index 2 sum to 0.
+
+Q5. Identify the one-character error in the code and explain why that bug causes the function
+to return the output you see when running on the minimal input you listed above.
+You should be able to specifically account for how the error causes the result to
+change from “completely correct” to “terribly wrong.”
+A5. The one-character error came from the equals sign present in the first recursive call of the function. The assignment changes the `sumSoFar` variable prior to running the second recursive call, evidently causing both recursive calls to be the same. This causes the recursive behavior to fail to skip numbers and only try to add all of them. Buggy will miss cases that require numbers to be skipped, like for an input where every other number sums to 0. The code then returns twice the amount of successes that use consecutive numbers.
+
+Marbles
+-------
+Q6. How much time does our visited boards tracking save us? Run the solver on the "half-done" board in the res folder and note at the bottom of the screen how many boards it said it tried. Now comment-out your code that skips already-visited boards and run the experiment again. Give the two counts and explain the results. Would you expect the percentage gap between the two counts to be same/greater/less if you re-run this experiment starting with the whole board? (try it if you dare!)
+A6. With memoization it took 1215 boards to find the solution to the "half-done" board. Without memoization it took 21379 boards. We expect the percentage gap to be greater when rerunning with the full board.
+
+Q7. What edit would you need to make to change the code to apply the traditional rule that the game is only won if the last remaining marble lands in the center spot? (our version lets it land anywhere) Describe exactly where the change would be made, and what it would be.
+A7. We would change our base case to require the last marble to land in the center. If it doesn't land in the center, we would initiate a backtrack and try something else!
+
+Redistrict
+----------
+Q8. A leader of a political party in your hometown learns you just took CS106B.
+They offer you a job working on cutting-edge software that applies algorithms to optimize
+gerrymandering during the process of redistricting.
+
+What questions might you ask about this job before making a decision? What might be the drawbacks?
+Which communities would be affected by the work you're doing?
+
+Please write your list of 3-5 questions and be sure to include ethical considerations.
+A8. 
+
+* Are the districts already equal in size?
+* Will districting negatively harm ethical communities?
+* How does gerrymandering take away power from the votes of people who got placed into a district that votes for the opposing political party?
+* When redrawing these lines, it is important to ensure there is no racial or ethnic reasons for redrawing. We cannot draw lines dividing predominately ethnic communities from white majority communities.
