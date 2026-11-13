@@ -1,0 +1,27 @@
+Q1: 
+
+_id remains constant, while _x and _y change based on the balls current velocities, _vx and _vy. Each iteration of the animation loop, _x and _y change by _vx and _vy respectively.
+
+Q2:
+
+In each iteration, the _vx of the stuck ball alternates between -5 and 5, causing the ball to move back and forth while remaining half on screen. The _vy remains constant at 4 and is pushing the ball down the screen. The _x alternates between 977 and 972 while the _y is increasing by 4 each iteration. This is different from Q1 where the _x and _y variables both changed without getting stuck in a loop of two values.
+
+Q3:
+
+After moving the ball to (0, 0) the ball is no longer stuck and it begins moving freely diagonally down and to the right. 
+
+Q4:
+
+When we attempted to access an array index outside of the allocated array bounds, the program crashes in normal mode and terminates early from a segmentation fault in debug mode. When deleting the same memory twice the program closes abruptly in normal mode and terminates early from a segmentation fault in debug mode. Accessing memory after it has been deleted causes no issues in normal mode and the test passes, but the test fails in debug mode.
+
+Q5:
+
+For this example 8000 Hz / 1000 Hz gives us an array of size 8. When we first create the array we will initialize all spots to 0, then when the string is plucked, the front half of the array will be set to +0.5 and the back half of the array will be set to -0.5.
+
+Q6:
+
+Waveform Array: [0.0497, 0.0497, 0.0497, 0, -0.05, -0.05, -0.05, -0.05]
+
+Q7:
+
+Switching the input values from +- 0.05 to +- 0.25 would increase the amplitude of the square wave causing it to be louder than before.
